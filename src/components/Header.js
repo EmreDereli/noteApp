@@ -27,18 +27,9 @@ const Header: () => React$Node = (props) => {
   return (
     
       <View style={[styles.textInputStyle,Shadows.Shadow2]}>
-          <TouchableOpacity onPress={props.onPress} style={{marginVertical:10,marginHorizontal:2,flexDirection:"row",alignItems:'center',justifyContent:'center',padding:10}}>
+          <TouchableOpacity onPress={props.onPressSave} style={{marginVertical:10,marginHorizontal:2,flexDirection:"row",alignItems:'center',justifyContent:'center',padding:10}}>
             <Text style={Typography.Title}> Save</Text>
          </TouchableOpacity>
-         {/* <TouchableOpacity style={{marginVertical:10,marginHorizontal:5,flexDirection:"row",alignItems:'center',justifyContent:'center',padding:5}}>
-             <Icons name="bold" size={16}></Icons>
-         </TouchableOpacity>
-         <TouchableOpacity style={{backgroundColor:'#f2f2f2',marginVertical:10,marginHorizontal:5,flexDirection:"row",alignItems:'center',justifyContent:'center',padding:5}}>
-             <Icons name="italic" size={16}></Icons>
-         </TouchableOpacity>
-         <TouchableOpacity style={{backgroundColor:'#f2f2f2',marginVertical:10,marginHorizontal:5,flexDirection:"row",alignItems:'center',justifyContent:'center',padding:5}}>
-             <Icons name="underline" size={16}></Icons>
-         </TouchableOpacity> */}
       </View>
     
   );

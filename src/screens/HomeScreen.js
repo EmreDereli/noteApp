@@ -82,6 +82,9 @@ export default class HomeScreen extends Component {
         this.getNote();
     }
 
+    onPressNote = (id,title,note) => {
+        this.props.navigation.navigate('EditNote',{id: id, title:title, note:note});
+    }
 
     render() {
         const { users } = this.state;
@@ -105,7 +108,7 @@ export default class HomeScreen extends Component {
                             data={users}
                             numColumns={2}
                             keyExtractor={(item, index) => item.id}
-                            renderItem={(item) => <NoteCard id={item.item.id} onPressDelete={() => this.onPressButton(item.item.id)} title={item.item.title} note={item.item.note} date={item.item.date}></NoteCard>}
+                            renderItem={(item) => <NoteCard onPress={()=> this.onPressNote(item.item.id,item.item.title,item.item.note)} id={item.item.id} onPressDelete={() => this.onPressButton(item.item.id)} title={item.item.title} note={item.item.note} date={item.item.date}></NoteCard>}
                         />) : null}
 
                     </View>

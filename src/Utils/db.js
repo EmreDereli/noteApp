@@ -46,6 +46,32 @@ export const addNote = (title,note,date) => {
 	
 }
 
+export const updateNote = (title,note,id) => {
+	dbOpen();
+	db.transaction(tx => {
+		tx.executeSql('UPDATE notes set title=?, note=? where id=?',
+			[title, note,id], (tx, results) => {
+				if (results.rowsAffected > 0) {
+					alert(
+						'Success',
+						'You are Registered Successfully',
+						[
+							{
+								text: 'Ok',
+								onPress: () =>
+									that.props.navigation.navigate('HomeScreen'),
+							},
+						],
+						{ cancelable: false }
+					);
+				} else {
+					console.log("hata");
+				}
+			});
+	});
+	
+}
+
 export const deleteNote = (id)=>{
 	dbOpen();
 	db.transaction(tx => {

@@ -34,7 +34,7 @@ export default class CustomTextInput extends Component {
     return (
       
         <View style={[styles.textInputStyle,Shadows.Shadow2]}>
-           <TextInput onChangeText={(text) => this.onChangeText(text)} style={{fontSize:20,fontWeight:"bold"}} maxLength={15} placeholder="Başlık"></TextInput>
+           <TextInput defaultValue={this.props.value} onChangeText={(text) => this.onChangeText(text)} style={{fontSize:20,fontWeight:"bold"}} maxLength={15} placeholder="Başlık"></TextInput>
         </View>
      
     );

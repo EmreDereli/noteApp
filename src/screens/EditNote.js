@@ -16,19 +16,23 @@ import {
   StatusBar,
 } from 'react-native';
 
-import db, { addNote, dbOpen } from "../Utils/db";
+import db, { addNote, dbOpen, updateNote } from "../Utils/db";
 import CustomTextInput from '../components/CustomTextInput';
 import NoteContentInput from '../components/NoteContentInput';
 import CustomButton from '../components/CustomButton';
 import { Typography } from '../styles/Typography';
 import Header from '../components/Header';
 
+var ID = null;
 var TITLE = null;
 var NOTE = null;
-export default class AddNote extends Component {
+
+export default class EditNote extends Component {
   constructor(props) {
     super(props);
-
+    ID = this.props.navigation.getParam('id', "boş");
+    TITLE = this.props.navigation.getParam('title', "boş");
+    NOTE = this.props.navigation.getParam('note', "boş");
   }
 
   onPressButton = () => {
@@ -38,16 +42,23 @@ export default class AddNote extends Component {
 
   getTitle = (val) => {
     TITLE = val;
+   
   }
   getNote = (val) => {
     NOTE = val;
   }
+
+  onPressSave = () => {
+    updateNote(TITLE,NOTE,ID);
+    this.props.navigation.navigate("HomeScreen");
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <Header onPressSave={() => navigation.navigate("Home")}></Header>
-        <CustomTextInput getValue={this.getTitle}></CustomTextInput>
-        <NoteContentInput getValue={this.getNote}></NoteContentInput>
+        <Header onPressSave={() => this.onPressSave()}></Header>
+        <CustomTextInput value={TITLE} getValue={this.getTitle}></CustomTextInput>
+        <NoteContentInput value={NOTE} getValue={this.getNote}></NoteContentInput>
         <CustomButton onPress={() => this.onPressButton()}></CustomButton>
       </View>
     );

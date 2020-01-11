@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -26,26 +26,30 @@ import Size from '../Utils/Size';
 
 var m = months;
 
-const NoteCard: () => React$Node = (props) => {
+export default class NoteCard extends Component {
+constructor(props){
+    super(props);
+}
 
+render(){
     var day = new Date().getDate();
     var mon = new Date().getMonth();
     var month = m[mon];
 
     return (
         <>
-            <View style={[styles.noteStyle,Shadows.Shadow1 ]}>
+            <TouchableOpacity onPress={this.props.onPress} style={[styles.noteStyle,Shadows.Shadow1 ]}>
                 <View style={styles.titleView}>
                     <View style={{ position: 'absolute', left: 10, top: 10, width: 7, height: 7, borderRadius: 7 / 2, backgroundColor: 'blue' }}></View>
-                    <Text style={Typography.Title}>{props.title}</Text>
+                    <Text style={Typography.Title}>{this.props.title}</Text>
                 </View>
                 <View style={{ flex: 8, margin: 10 }}>
-                    <Text style={[Typography.Content, { textAlign: 'auto' }]}>{props.note}</Text>
+                    <Text style={[Typography.Content, { textAlign: 'auto' }]}>{this.props.note}</Text>
                 </View>
                 <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginVertical: 10, marginHorizontal: 20 }}>
-                    <Text style={Typography.Date}>{props.date}</Text>
+                    <Text style={Typography.Date}>{this.props.date}</Text>
                     <View style={{ flexDirection: 'row', alignItems: 'space-between' }}>
-                        <TouchableOpacity style={{marginHorizontal:5}} onPress={props.onPressDelete}>
+                        <TouchableOpacity style={{marginHorizontal:5}} onPress={this.props.onPressDelete}>
                             <Icons name="trash" solid size={16} color="#000"></Icons>
                         </TouchableOpacity>
                         {/* <TouchableOpacity style={{marginHorizontal:5}}>
@@ -55,9 +59,11 @@ const NoteCard: () => React$Node = (props) => {
                     </View>
 
                 </View>
-            </View>
+            </TouchableOpacity>
         </>
     );
+}
+    
 };
 
 
@@ -82,4 +88,3 @@ const styles = StyleSheet.create({
     }
 });
 
-export default NoteCard;
